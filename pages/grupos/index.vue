@@ -10,13 +10,14 @@
            <client-only> 
     <div>
            <div style="padding: 30px; box-shadow: -1px 1px 5px 1px rgb(152 163 179 / 50%); background: #FFFFFF 0% 0% no-repeat padding-box; border: 1px solid #7986CB; border-radius: 23px; opacity: 1; text-align: center;">
-           <div @click="joinGroup(item.id)">
-             <b-button v-if="rolUser == 0" variant="link" v-b-popover.hover.top="'Toca el boton para unirte al grupo!'" style="position: absolute; right: 20px;">
+           <div @click="joinGroup(item.id, item.slug)">
+             <b-button v-if="rolUser == 0 && item.perteneceAlGrupo == 0" variant="link" v-b-popover.hover.top="'Toca el boton para unirte al grupo!'" style="position: absolute; right: 20px;">
                <i class="fas fa-plus-circle"></i>
              </b-button>
-             <b-button v-if="rolUser == 1" variant="link" v-b-popover.hover.top="'Toca el boton para unirte al grupo!'" style="position: absolute; right: 20px;">
+             <b-button v-if="rolUser == 1  && item.perteneceAlGrupo == 0" variant="link" v-b-popover.hover.top="'Toca el boton para unirte al grupo!'" style="position: absolute; right: 20px;">
                <i class="fas fa-grip-lines"></i>
              </b-button>
+             <span v-if="item.perteneceAlGrupo == 1">Unido</span>
            </div>
            <img v-if="item.icono" :src="item.icono" style="margin: auto; height: 100px; border-radius: 50px;" />
              <h2>{{item.titulo}}</h2>
@@ -40,44 +41,11 @@ export default {
   name: "grupos",
   components: {Grupos},
  async fetch() {
-   await this.$axios
-               .$get("/grupos/getslug?slug="+this.$route.params.slug+"&token="+this.$store.state.tokenUser)
-               .then((response) => {
-                 console.log(response)
-                   if (response.status == 0) {
-                   
-                   } else {
-                   var rolName = 0;
-                   if (response.grupo[0].rolUser == 1) {
-                   rolName = "Owner";
-                   }
-                   if (response.grupo[0].rolUser == 2) {
-                   rolName = "Moderador";
-                   }
-                   if (response.grupo[0].rolUser == 3) {
-                   rolName = "Miembro";
-                   }
-       
-                   this.responseGrupo= response
-                   this.pGroup= response.grupo[0].id
-                   this.tituloGrupo= response.grupo[0].titulo
-                   this.excerptGrupo= response.grupo[0].excerpt
-                   this.imagenGrupo= response.grupo[0].imagen
-                   this.contenido= response.grupo[0].contenido
-                   this.miembros= response.grupo[0].miembros
-                   this.moderadores= response.grupo[0].moderadores
-                   this.rolName= rolName
-                   this.rolUser= response.grupo[0].rolUser
-                   this.fechaM = response.grupo[0].fechaM
-                   this.miembrosO = response.grupo[0].miembrosO
-       
-                   }
-               })
       
   await this.$axios
-        .$get("/grupos/getgrupostop")
+        .$get("/grupos/getgrupostop?p="+this.$store.state.p)
         .then((response) => {
-            console.log(response)
+            console.log("array grupos", response)
           this.arrayGrupos = response
         })
   },
@@ -116,6 +84,14 @@ export default {
   },
   watch: {},
   methods: {
+    async getGruposTop(){
+       await this.$axios
+        .$get("/grupos/getgrupostop?p="+this.$store.state.p)
+        .then((response) => {
+            console.log("array grupos", response)
+          this.arrayGrupos = response
+        })
+    },
       async  joinGroup(id){
        if(this.rolUser == 2 || this.rolUser == 1){
           this.$router.push({ name: 'g-slug-configuracion-moderadores',  params: { slug: this.$route.params.slug }})
@@ -138,9 +114,9 @@ export default {
             this.rolUser = response.status;
       
             if(response.status != 0){
-                alert('unido')
+                this.getGruposTop()
             }else{
-               this.$emit("getGrupoNow");
+               
               
             }
       }
