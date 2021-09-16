@@ -18,8 +18,8 @@
         </nuxt-link>
         <nuxt-link to="/g/ecommerce" target="_blank">
             <div style="width: 95px; height: 102px; box-shadow: 0px 10px 60px #B1B1B13D; border-radius: 30px;" class="fondoImagen3">
-                <i class="fas fa-cash-register" style="margin-top: 20px; color: #fff; font-size: 25px;"></i>
-                <p style="color: #fff;">eCommerce</p>
+                <i class="fas fa-school" style="margin-top: 20px; color: #fff; font-size: 25px;"></i>
+                <p style="color: #fff;">Educacion</p>
             </div>
         </nuxt-link>
         </div> 
