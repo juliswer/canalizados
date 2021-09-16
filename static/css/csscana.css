@@ -4337,3 +4337,22 @@ text-decoration:underline!important;
   color: #33558B; 
   font-size: 18px !important;
 }
+
+.fondoImagen {
+  background-image: url("https://eleconomista.com.ar/wp-content/uploads/2021/09/invertir-en-Bitcoin.jpeg");
+background-position: center;
+background-size: 180px;
+background-color: rgba(0, 0, 0, 0.2);
+}
+
+.fondoImagen2 {
+  background-image: url("https://eleconomista.com.ar/wp-content/uploads/2021/02/mercados-1024x768.jpg");
+background-position: center;
+background-size: 180px;
+}
+
+.fondoImagen3 {
+  background-image: url("https://s3.us-west-2.amazonaws.com/puntoapunto.com.ar/wp-content/uploads/2020/08/24124210/ecommerce.jpg");
+background-position: center;
+background-size: 180px;
+}
