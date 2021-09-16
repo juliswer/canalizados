@@ -3916,13 +3916,14 @@ iframe {
   margin-left: 10px;
 }
 .cubrePostStaffpicks{
-  padding: 20px; 
-  box-shadow: rgba(152, 163, 179, 0.5) -1px 1px 5px 1px; 
-  background: 0% 0% no-repeat padding-box padding-box rgb(255, 255, 255); 
-  border: 1px solid rgb(121, 134, 203); 
-  border-radius: 23px; 
-  opacity: 1; 
-  text-align: center;
+  box-shadow: -1px 1px 5px 1px rgb(152 163 179 / 50%);
+  padding: 10px;
+  background: white;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  height: 100%;
 }
 .cubrePostStaffpicks img{
   width: 100%;
