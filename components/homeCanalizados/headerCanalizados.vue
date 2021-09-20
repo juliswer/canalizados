@@ -248,7 +248,6 @@ export default {
           }
         ],
         link: [
-          { rel: "stylesheet", href: "assets/css/templatemo-lava.css" },
           { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
           {
             rel: "stylesheet",
