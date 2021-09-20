@@ -4356,3 +4356,17 @@ background-size: 180px;
 background-position: center;
 background-size: 180px;
 }
+
+@media screen and (max-width: 800px) {
+  .div-block-457 {
+    display: none;
+  }
+
+  .div-block-460 {
+    display: none;
+  }
+
+  .list-8 {
+    display: none;
+  }
+}
